@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TV Maze API Search</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div id="app">
+      <img src="tvm_api.png">
+
+      <div class="browse">
+        <form id="search">
+          <input v-model="searchText" type="search" placeholder="Search for a title..." id="show-search">
+          <input v-on:click="fetchData" type="submit" value="Submit">
+        </form>
+
+        <div v-if="matchingShows" >
+          <select v-model="selected" id="show-select">
+            <option v-for="show in matchingShows" :value="show">{{ show.title }}</option>
+          </select>
+        </div>
+
+        <div v-if="selected" id="show-details">
+          <img :src="selected.image">
+          <h2>{{ selected.title }}</h2>
+          {{ selected.description }}
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <script src="tv_browser.js"></script>
+</body>
+</html>
